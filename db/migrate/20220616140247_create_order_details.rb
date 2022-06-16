@@ -5,7 +5,7 @@ class CreateOrderDetails < ActiveRecord::Migration[6.1]
       t.integer :item_id
       t.integer :quantity
       t.integer :price_add_tax
-      t.integer :making_status
+      t.integer :making_status, null: false, default: 
 
       t.timestamps
     end

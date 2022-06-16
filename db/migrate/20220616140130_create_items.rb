@@ -5,7 +5,7 @@ class CreateItems < ActiveRecord::Migration[6.1]
       t.string :name
       t.text :item_detail
       t.integer :price_without_tax
-      t.boolean :is_sale_status
+      t.boolean :is_sale_status, default: true
 
       t.timestamps
     end
