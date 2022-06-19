@@ -2,9 +2,9 @@
 <%= image_tag @item.item_image, size:'380x300' %>
 
 <%= form_with model: @cart_item , url: cart_items_path(item_id: @item), method: :post do |f| %>
-	<%= @item.name %>
-	<%= @item.item_detail %>
-	¥ <%= @item.with_tax_price.to_s(:delimited, delimiter: ',') %> (税込)
+	<%= f.hidden_field : @item.name %>
+	<%= f.hidden_field : @item.item_detail %>
+	¥ <%= f.hidden_field : @item.with_tax_price.to_s(:delimited, delimiter: ',') %> (税込)
 	<%= f.select :quantity, [['1個', 1], ['2個', 2], ['3個', 3], ['4個', 4], ['5個', 5], ['6個', 6], ['7個', 7], ['8個', 8], ['9個', 9]], {:prompt => "個数選択"} %>
 	<%= f.submit "カートに入れる", class:"btn btn-primary" %>
 <% end %>
