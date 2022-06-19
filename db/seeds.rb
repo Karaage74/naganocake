@@ -10,3 +10,5 @@ Admin.create!(
    email: 'k@com',
    password: 'karaage'
 )
+
+
