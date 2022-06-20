@@ -1,10 +1,39 @@
-
-<%= image_tag @item.item_image, size:'400x300' %>
-
-<%= form_with model: @cart_item , url: cart_items_path(item_id: @item), method: :post do |f| %>
-	<%= @item.name %>
-	<%= @item.item_detail %>
-	¥ <%= @item.price_without_tax.to_s(:delimited, delimiter: ',') %> (税込)
-	<%= f.select :quantity, [['1個', 1], ['2個', 2], ['3個', 3], ['4個', 4], ['5個', 5], ['6個', 6], ['7個', 7], ['8個', 8], ['9個', 9]], {:prompt => "個数選択"} %>
-	<%= f.submit "カートに入れる", class:"btn btn-primary" %>
-<% end %>
+<div class="container my-5">
+  <h2>商品詳細</h2>
+  <div class="row">
+    <div class="col-6">
+      <%= image_tag @item.item_image, size:"550x400" %>
+    </div>
+    <div class="col-5 d-flex align-items-center">
+      <%= form_with model: @cart_item , url: cart_items_path(item_id: @item), method: :post do |f| %>
+      <table class="table">
+      	<tcody>
+      		<tr>
+      			<td>商品名:</td>
+      			<td><%= @item.name %></td>
+      		</tr>
+      		<tr>
+      			<td>商品説明:</td>
+      			<td><%= @item.item_detail %></td>
+      		</tr>
+      		<tr>
+      			<td>価格:</td>
+      			<td>¥ <%= @item.price_without_tax.to_s(:delimited, delimiter: ',') %> (税込)</td>
+      		</tr>
+      		<tr>
+      			<td>カートに入れる個数:</td>
+      			<td>
+      			  <%= f.hidden_field :item_id, :value => @item.id %>
+      				<%= f.select :quantity, [['1個', 1], ['2個', 2], ['3個', 3], ['4個', 4], ['5個', 5], ['6個', 6], ['7個', 7], ['8個', 8], ['9個', 9]], {:prompt => "個数選択"} %>
+      			</td>
+      		</tr>
+      		<tr>
+      			<td></td>
+      			<td><%= f.submit "カートに入れる", class:"btn btn-primary" %></td>
+      		</tr>
+      	</tcody>
+      </table>
+			<% end %>
+    </div>
+  </div>
+</div>
