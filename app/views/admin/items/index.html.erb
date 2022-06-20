@@ -1,9 +1,9 @@
 <div class='container'>
   <div class='row'>
-    <div class="col-12">
+    <div class="col-12 mt-5">
       <h2>商品一覧</h2>
       <div class="text-right">
-        <%= link_to "新規登録",new_admin_item_path %>
+        <%= link_to "新規登録 ＋",new_admin_item_path %>
       </div>
 
 
@@ -26,15 +26,20 @@
               <td><%= item.genre.name %></td>
               <td>
                 <% if item.is_sale_status %>
-                販売中
+                  <p class="text-success font-weight-bold">販売中</p>
                 <% else %>
-                販売停止中
+                <p class="text-danger font-weight-bold">販売停止中</p>
                 <% end %>
               </td>
             </tr>
           <% end %>
         </tbody>
       </table>
+      <div class="row", style="text-align: center;">
+        <div class="col-6 offset-5">
+        <%= paginate @items %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
