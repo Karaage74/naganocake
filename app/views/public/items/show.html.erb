@@ -1,6 +1,4 @@
-
-<%= image_tag @item.item_image, size:'380x300' %>
-
+<%= image_tag @item.item_image, size:'400x300' %>
 <%= form_with model: @cart_item, url: cart_items_path(item_id: @item), method: :post do |f| %>
 	<%= @item.name %>
 	<%= @item.item_detail %>
