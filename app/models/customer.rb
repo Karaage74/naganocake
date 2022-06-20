@@ -4,6 +4,8 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
+  has_many :cart_items
+
   def full_name
     self.last_name + "" + self.first_name
   end
@@ -11,4 +13,5 @@ class Customer < ApplicationRecord
   def kana_full_name
     self.last_name_kana + "" + self.first_name_kana
   end
+
 end
