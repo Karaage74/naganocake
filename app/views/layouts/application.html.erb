@@ -8,7 +8,7 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
+
 
 
   </head>
@@ -19,6 +19,9 @@
         <%= render 'layouts/header' %>
       </header>
       <%= yield %>
+      <footer>
+        <%= render 'layouts/footer' %>
+      </footer>
     </body>
   <% elsif admin_signed_in? %>
     <body>
@@ -26,6 +29,9 @@
         <%= render 'layouts/header' %>
       </header>
       <%= yield %>
+      <footer>
+        <%= render 'layouts/footer' %>
+      </footer>
     </body>
   <% else %>
     <body>
@@ -33,6 +39,9 @@
         <%= render 'layouts/header' %>
       </header>
       <%= yield %>
+      <footer>
+        <%= render 'layouts/footer' %>
+      </footer>
     </body>
   <% end %>
 </html>
