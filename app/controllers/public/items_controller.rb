@@ -1,6 +1,7 @@
 class Public::ItemsController < ApplicationController
   def index
-    @items = Item.all.page(params[:page]).per(8)
+    @search = Item.ransack(params[:q])
+    @items = @search.result.page(params[:page]).per(6)
   end
 
   def show
