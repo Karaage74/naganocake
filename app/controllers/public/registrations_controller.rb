@@ -20,9 +20,14 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
   #   super
   # end
+  def after_update_path_for(resource)
+    customers_mypage_path(current_customer)
+  end
 
   # DELETE /resource
   # def destroy
