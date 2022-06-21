@@ -8,6 +8,7 @@ class Customer < ApplicationRecord
   has_many :shipping_addresses
   has_many :orders
 
+
   def full_name
     self.last_name + self.first_name
   end
@@ -19,5 +20,4 @@ class Customer < ApplicationRecord
   def active_for_authentication?
     super && (self.is_deleted == false)
   end
-
 end
