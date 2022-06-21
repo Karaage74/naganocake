@@ -8,7 +8,7 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <div>
       <ul class="navbar-nav ml-auto", style="font-family: Hannotate SC;">
         <% if customer_signed_in? %>
 
@@ -27,6 +27,7 @@
           <li><%= link_to "ジャンル一覧", admin_genres_path, class: 'btn btn-outline-light ml-3' %></li>
           <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'btn btn-outline-light ml-3' %></li>
 
+
         <% else %>
 
           <!--非ログイン時-->
@@ -36,6 +37,32 @@
           <li><%= link_to "ログイン", new_customer_session_path, class: 'btn btn-outline-light ml-3' %></li>
 
         <% end %>
+      </ul>
+      <ul class="navbar-nav ml-auto form-inline", style="text-align: right; font-family: Hannotate SC;">
+        <li class="form-group ml-auto mt-3 mb-1">
+          <% if customer_signed_in? %>
+
+          <!--会員ログイン時-->
+            <%= search_form_for(@search, url:items_path) do |f| %>
+          		<%= f.search_field :name_cont,class:'form-control', placeholder:"商品キーワード" %>
+          		<%= f.submit "検索", class: 'btn btn-warning' %>
+          	<% end %>
+          <% elsif admin_signed_in? %>
+
+          <!--管理者ログイン時-->
+            <%= search_form_for(@search, url:admin_items_path) do |f| %>
+              <%= f.search_field :name_cont,class:'form-control', placeholder:"商品キーワード" %>
+              <%= f.submit "検索", class: 'btn btn-warning' %>
+            <% end %>
+          <% else %>
+
+          <!--非ログイン時-->
+            <%= search_form_for(@search, url:items_path) do |f| %>
+          		<%= f.search_field :name_cont,class:'form-control', placeholder:"商品キーワード" %>
+          		<%= f.submit "検索", class: 'btn btn-warning' %>
+          	<% end %>
+          <% end %>
+        </li>
       </ul>
     </div>
   </div>

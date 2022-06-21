@@ -1,7 +1,8 @@
 class Public::ItemsController < ApplicationController
   def index
     @genres = Genre.all
-    @items = Item.all.page(params[:page]).per(6)
+    @search = Item.ransack(params[:q])
+    @items = @search.result.page(params[:page]).per(6)
     @items_all = Item.all
   end
 
