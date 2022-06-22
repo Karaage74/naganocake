@@ -1,42 +1,33 @@
-<div class="container my-5">
+<div class="container-fulid my-5">
   <div class="row">
-    <div class="col-md-3 mt-5">
+    <div class="col-md-3">
 			<%= render 'public/items/sidebar', genres: @genres %>
 		</div>
-    <div class="col-4">
-      <h2>商品詳細</h2>
-      <%= image_tag @item.item_image, size:"470x360" %>
-    </div>
-    <div class="col-4 offset-1 d-flex align-items-center">
-      <%= form_with model: @cart_item , url: cart_items_path(item_id: @item), method: :post do |f| %>
-      <table class="table">
-      	<tcody>
-      		<tr>
-      			<td>商品名:</td>
-      			<td><%= @item.name %></td>
-      		</tr>
-      		<tr>
-      			<td>商品説明:</td>
-      			<td><%= @item.item_detail %></td>
-      		</tr>
-      		<tr>
-      			<td>価格:</td>
-      			<td>¥ <%= @item.price_without_tax.to_s(:delimited, delimiter: ',') %> (税込)</td>
-      		</tr>
-      		<tr>
-      			<td>カートに入れる個数:</td>
-      			<td>
-      			  <%= f.hidden_field :item_id, :value => @item.id %>
-      				<%= f.select :quantity, [['1個', 1], ['2個', 2], ['3個', 3], ['4個', 4], ['5個', 5], ['6個', 6], ['7個', 7], ['8個', 8], ['9個', 9]], {:prompt => "個数選択"} %>
-      			</td>
-      		</tr>
-      		<tr>
-      			<td></td>
-      			<td><%= f.submit "カートに入れる", class:"btn btn-primary" %></td>
-      		</tr>
-      	</tcody>
-      </table>
-			<% end %>
+
+    <div class="col-md-8">
+      <div class="card border border-secondary text-dark bg-light rounded">
+        <div class="row no-gutters">
+          <div class="col-md-7">
+            <div class="bd-placeholder-img"><%= image_tag @item.item_image, width:"100%", height:"400px" %></div>
+          </div>
+          <div class="col-md-5">
+            <%= form_with model: @cart_item , url: cart_items_path(item_id: @item), method: :post do |f| %>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item bg-light text-center pt-4 pb-4"><%= @item.name %></li>
+                <li class="list-group-item bg-light text-center pt-4 pb-4"><%= @item.item_detail %></li>
+                <li class="list-group-item bg-light text-center pt-4 pb-4">¥ <%= @item.with_tax_price.to_s(:delimited, delimiter: ',') %> (税込)</li>
+                <li class="list-group-item bg-light text-center pt-4 pb-4">
+                  <%= f.hidden_field :item_id, :value => @item.id %>
+        				  カートに入れる数量:   <%= f.select :quantity, [['1個', 1], ['2個', 2], ['3個', 3], ['4個', 4], ['5個', 5], ['6個', 6], ['7個', 7], ['8個', 8], ['9個', 9]], {:prompt => "個数選択"} %>
+                </li>
+                <% if @item.is_sale_status %>
+                  <div class="list-group-item bg-light text-center pt-4 pb-4"><%= f.submit "カートに入れる", class:"btn btn-info" %></div>
+                <% end %>
+              </ul>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

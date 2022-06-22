@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container-fulid">
   <div class="row">
-	  <div class="col-md-3 mt-5">
+	  <div class="col-md-3" style="margin-top: 150px;">
 		  <table class="table table-bordered table-hover text-center ec-genre-list" >
 			  <tr>
 				<td class="text-black-50">ジャンルから探す</td>
@@ -21,16 +21,27 @@
 		      <% end %>
 		  </table>
 		</div>
-		<div class="col-md-8 offset-1 mt-5">
+		<div class="col-md-8 mt-5" style="margin-left: 50px;">
 		<h2><%= @genre.name %>一覧(全<%= @items.count %>件)</h2>
 		<div class="card-deck">
 		  <% @items.each do |item| %>
-			<div class="col-4 mt-5">
-			  <div class="card bg-light">
-				<%= link_to item_path(item.id), class: "text-dark", data: {"turbolinks" => false} do %>
-				  <%= image_tag item.item_image, width:"100%", height:"150px" %>
-				  <%= item.name %><br>
-				  ¥<%= item.price_without_tax.to_s(:delimited, delimiter: ',') %>
+			<div class="col-md-4 mt-5">
+			  <div class="card border border-secondary text-dark bg-light rounded">
+				<%= link_to item_path(item.id), style: "color: black;", data: {"turbolinks" => false}, class: "rounded" do %>
+					<%= image_tag item.item_image, width:"100%", height:"150px" %>
+				  <div class="card-body">
+				  	<div class="card-title">
+				  		<%= item.name %><br>
+				  	</div>
+				  	<div class="card-text mb-0">
+				  		¥<%= item.price_without_tax.to_s(:delimited, delimiter: ',') %>
+				  	</div>
+				  	<% if item.is_sale_status %>
+              <p class="card-text text-success font-weight-bold mb-0" style="text-align: right;">販売中</p>
+            <% else %>
+              <p class="card-text text-danger font-weight-bold mb-0" style="text-align: right;">販売停止中</p>
+            <% end %>
+				  </div>
 				<% end %>
 			  </div>
 			</div>
