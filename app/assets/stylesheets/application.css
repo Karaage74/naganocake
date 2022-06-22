@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+ .slider {
+   height: 500px;
+   margin-bottom: 60px;
+ }
+
+
+
+
+
