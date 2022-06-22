@@ -6,42 +6,26 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-
-
   </head>
-
-  <% if customer_signed_in? %>
-    <body>
-      <header>
+  <body>
+    <header class="sticky-top">
+      <% if customer_signed_in? %>
         <%= render 'layouts/header' %>
-      </header>
-      <%= yield %>
-      <footer>
-        <%= render 'layouts/footer' %>
-      </footer>
-    </body>
-  <% elsif admin_signed_in? %>
-    <body>
-      <header>
+      <% elsif admin_signed_in? %>
         <%= render 'layouts/header' %>
-      </header>
-      <%= yield %>
-      <footer>
-        <%= render 'layouts/footer' %>
-      </footer>
-    </body>
-  <% else %>
-    <body>
-      <header>
+      <% else %>
         <%= render 'layouts/header' %>
-      </header>
-      <%= yield %>
-      <footer>
-        <%= render 'layouts/footer' %>
-      </footer>
-    </body>
-  <% end %>
+      <% end %>
+    </header>
+    <%= yield %>
+    <footer>
+      <%= render 'layouts/footer' %>
+    </footer>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  </body>
 </html>
