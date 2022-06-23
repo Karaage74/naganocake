@@ -1,24 +1,126 @@
-# README
+![ロゴ](https://user-images.githubusercontent.com/104710179/175221822-01e84638-2bfa-4fa3-b938-6174809efeac.PNG)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# NaganoCake
+長野県松本市にある洋菓子店「NganoCake」の商品を全国のみなさんに食べてもらいたい、<br>
+その思いを叶えるために開発された洋菓子専門のECサイト。<br>
+当初は来店されたお客様だけが食べられるお店でしたが、SNSで拡散されてから瞬く間に全国に認知が広がり<br>
+お店での対応が困難になってきたため、ECサイトを立ち上げるに至る。
 
-Things you may want to cover:
+# 通販について
+●商品の購入には会員登録が必要<br>
+●注文に応じて製作に入る受注生産型とする<br>
+●1日の受注量に制限は設けない<br>
+●送料は1配送につき全国一律800円<br>
+●友人や家族など、注文者の住所以外にも商品を発送できる<br>
+●支払方法はクレジットカード/銀行振込の2種類から選択可能 ＊代引きなし<br>
 
-* Ruby version
+![画像](https://user-images.githubusercontent.com/104710179/175224407-79f19b99-96d0-464d-aee0-9efea6aa23a0.PNG)
 
-* System dependencies
+![gazou](https://user-images.githubusercontent.com/104710179/175224462-5c88d796-1c1d-41dd-98ff-42bd428eba8d.PNG)
 
-* Configuration
+# 実装機能について
 
-* Database creation
+## ≪会員側実装機能≫
+●顧客は会員登録、ログイン・ログアウト、退会ができる<br>
+●会員のログインはメールアドレスとパスワードで行う<br>
+●会員がログインしている状態か否か、ページのヘッダーにユーザ名を表示するなどして判断できる<br>
+●サイトの閲覧はログインなしで行える<br>
+●商品をカートに入れ、1度に複数種類、複数商品の購入が可能<br>
+●カート内の商品は個数変更・削除ができる<br>
+●カートへの商品追加はログインなしでは行えない<br>
+●クレジットカード情報はシステム上保持しない<br>
+●会員は配送先を複数登録しておくことが可能<br>
+●会員はマイページから下記が行える<br>
+  &ensp;・ユーザ情報の閲覧・編集<br>
+  &ensp;・注文履歴の閲覧<br>
+  &ensp;・配送先の閲覧・編集<br>
+●注文履歴一覧には下記の情報が表示<br>
+  &ensp;・注文日<br>
+  &ensp;・配送先<br>
+  &ensp;・支払金額（商品合計＋送料）<br>
+  &ensp;・注文ステータス<br>
+●注文履歴詳細には下記の情報が表示<br>
+  &ensp;・注文日<br>
+  &ensp;・配送先<br>
+  &ensp;・支払方法<br>
+  &ensp;・注文ステータス<br>
+  &ensp;・商品の注文内容詳細（商品名、単価、個数、小計）<br>
+  &ensp;・請求情報（商品合計、送料、支払金額）<br>
+●会員登録時、下記の情報をユーザ情報として入力できる<br>
+  &ensp;・名前（姓・名）<br>
+  &ensp;・名前（カナ姓・カナ名）<br>
+  &ensp;・郵便番号<br>
+  &ensp;・住所<br>
+  &ensp;・電話番号<br>
+  &ensp;・メールアドレス<br>
+  &ensp;・パスワード<br>
+● 商品は税込価格で表示されること<br>
+● 商品検索が可能（ジャンルでの検索も可）<br>
+● ジャンルごとに商品が表示できる<br>
 
-* Database initialization
+## ≪管理者側（店側）実装機能≫
+● 管理者用メールアドレスとパスワードでログインできる<br>
+● 商品について、下記が行える<br>
+  &ensp;・新規追加、編集、閲覧<br>
+  &ensp;・販売停止（売切表示）<br>
+● 商品情報は下記のものを持つこと<br>
+  &ensp;・商品名<br>
+  &ensp;・商品説明文<br>
+  &ensp;・ジャンル<br>
+  &ensp;・税抜価格<br>
+  &ensp;・商品画像<br>
+  &ensp;・販売ステータス<br>
+●会員登録されているユーザ情報の閲覧、編集、退会処理が行えること<br>
+●ユーザの注文履歴が一覧・詳細表示でき、下記の情報が表示されること<br>
+&nbsp;【注文履歴一覧】<br>
+  &ensp;・購入日時<br>
+  &ensp;・購入者<br>
+  &ensp;・注文個数<br>
+  &ensp;・注文ステータス<br>
+&nbsp;【注文履歴詳細】<br>
+  &ensp;・購入者<br>
+  &ensp;・注文日<br>
+  &ensp;・配送先<br>
+  &ensp;・支払方法<br>
+  &ensp;・料金（商品合計、送料、請求金額合計）<br>
+  &ensp;・注文ステータス<br>
+  &ensp;・各注文商品詳細（商品名、単価(税込)、数量、小計）<br>
+  &ensp;・各注文商品の製作ステータス<br>
+● 顧客ごとの注文一覧表示<br>
+● 注文ごとに注文ステータスの更新、注文商品ごとに製作ステータスの更新ができる<br>
 
-* How to run the test suite
+# 開発環境
+Ruby 2.6.3 Rails 6.1.6
 
-* Services (job queues, cache servers, search engines, etc.)
+## 使用言語/フレームワーク
+・HTML & CSS<br>
+・Ruby<br>
+・JavaScript<br>
+・Ruby on Rails
 
-* Deployment instructions
+## Gem
+・devise<br>
+・enum_help<br>
+・pry-rails<br>
+・kaminari<br>
+・pry-byebug<br>
+・rubocop-airbnb<br>
+・ransack<br>
+＊BootStrapとJqueryはWebpacker（yarn）で管理
 
-* ...
+## テスト
+【管理者用アカウント】<br>
+メールアドレス：k@com<br>
+パスワード：karaage<br>
+
+【顧客用アカウント】<br>
+メールアドレス:suzu@gmail.com<br>
+パスワード:xzxzxz<br>
+
+# 開発者
+チーム名<br>
+ &ensp;からあげ<br>
+メンバー<br>
+・すずしゅん<br>
+・あおいい<br>
+・たくみつ<br>
