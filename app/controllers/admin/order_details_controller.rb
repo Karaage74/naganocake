@@ -8,7 +8,7 @@ class Admin::OrderDetailsController < ApplicationController
 		 when "in_production"
 			   order_detail.order.update(order_status: "in_production")
 		 when "completed_production"
-			if order_detail.order.order_details.all?{|order_detail| order_detail.making_status == "製作完了"}
+			if order_detail.order.order_details.all?{|order_detail| order_detail.making_status == "completed_production"}
 			   order_detail.order.update(order_status: "preparing_to_ship")
 			end
 		 end
