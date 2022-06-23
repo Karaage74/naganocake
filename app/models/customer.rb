@@ -10,7 +10,7 @@ class Customer < ApplicationRecord
 
 
   def full_name
-    self.last_name + self.first_name
+    self.last_name + "" + self.first_name
   end
 
   def kana_full_name
