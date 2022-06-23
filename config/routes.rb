@@ -20,7 +20,7 @@ Rails.application.routes.draw do
      get 'customers/edit' => 'customers#edit'
      patch 'customers' => 'customers#update'
      get 'orders/about' => 'orders#about', as: 'orders_about'
-     get 'orders/confirm' => 'orders#confirm'
+     post 'orders/confirm' => 'orders#confirm'
      get 'orders/thanx' => 'orders#thanx'
      resources :orders, only: [:create, :new, :index, :show]
      delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all'
