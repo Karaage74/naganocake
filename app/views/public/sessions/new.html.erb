@@ -1,41 +1,29 @@
 <%= flash[:error] %>
 <div class="container">
-  <h2>ログイン</h2>
-  <div class="row">
+  <h2 class="text-center">ログイン</h2>
+  <div class="row-justify-content-center">
     <div class="col-xs-offset-1 col-xs-11">
       <h4 class="head-line title_h2 text-center">会員の方はこちらからログイン</h4>
   
       <%= form_with model: @customer, url: session_path(resource_name) do |f| %>
         <table class="table">
           <tr>
-            <td>
-              メールアドレス　<%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-            </td>
+            <th>メールアドレス</th>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"  %></td>
           </tr>
           <tr>
-            <td>
-              パスワード　    <%= f.password_field :password, autocomplete: "current-password" %>
-            </td>
-          </tr>
-          <tr>
-            <td class='form-group'>
-              <%= f.submit "Log in", class: "btn btn-sm btn-success" %>
-            </td>
+            <th>パスワード</th>
+            <td><%= f.password_field :password, autocomplete: "current-password", class: "form-control"  %></td>
           </tr>
         </table>
+        <div class="justify-content-center">
+          <%= f.submit "ログイン", class: "btn btn-success btn-sm btn-block" %>
+        </div>
       <% end %>
-  </div>
-  <div class="row">
-    
-      <div class="col-xs-9">
-        <h2 class="head-line title_h2 text-center">会員登録がお済みでない方</h2>
-        <h4><%= link_to "こちら", "/customers/sign_up" %> から新規会員登録を行ってください</h4>
-      </div>
+    </div>
+    <div class="col-xs-12 mt-5">
+      <h4 class="head-line title_h2 text-center">会員登録がお済みでない方はこちら</h4>
+      <h4 class="text-center"><%= link_to "新規登録", "/customers/sign_up", class: "btn btn-primary btn-sm btn-block" %></h4>
     </div>
   </div>
 </div>
-
-
-
-
-
