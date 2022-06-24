@@ -24,7 +24,7 @@
               <td><%= cart_item.item.with_tax_price %>円</td>
                 <%= form_with model: cart_item, url: cart_item_path(cart_item.id) do |f| %>
                   <td>
-                    <%= f.select :quantity, [['1個', 1], ['2個', 2], ['3個', 3], ['4個', 4], ['5個', 5], ['6個', 6], ['7個', 7], ['8個', 8], ['9個', 9]], {:prompt => "個数選択"} %>
+                    <%= f.number_field :quantity, min: 1, max: 100 %>
                     <%= f.submit "変更", class: 'btn btn-success ml-3' %>
                   </td>
                 <% end %>
