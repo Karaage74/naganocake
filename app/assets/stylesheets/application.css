@@ -36,6 +36,20 @@
  border-left: 1px solid 	#d6d8db;
 }
 
+.genre-table {
+ border-top: 2px solid 	#6c757d;
+ border-bottom: 2px solid 	#6c757d;
+ border-right: 2px solid 	#6c757d;
+ border-left: 2px solid 	#6c757d;
+}
+
+.genre-form {
+ border-top: 2px solid 	#6c757d;
+ border-bottom: 2px solid 	#6c757d;
+ border-right: 2px solid 	#6c757d;
+ border-left: 2px solid 	#6c757d;
+}
+
 
 .thanx {
  background-image:url("assets/thanx.jpg");
