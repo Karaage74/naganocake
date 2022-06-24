@@ -1,23 +1,29 @@
-<h4>注文履歴一覧</h4>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>購入日時</th>
-      <th>購入者</th>
-      <th>注文個数</th>
-      <th>注文ステータス</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @orders.each do |order| %>
-    <tr>
-      <td><%= link_to order.created_at.strftime("%Y/%m/%d %H:%M:%S"), admin_order_path(order.id) %></td>
-      <td><%= order.customer.last_name + order.customer.first_name %></td>
-      <td><%= order.order_details.sum(:quantity) %></td>
-      <td><%= order.order_status_i18n %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<h4 class="ml-5">注文履歴一覧</h4>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table-bordered">
+        <thead>
+          <tr>
+            <th>購入日時</th>
+            <th>購入者</th>
+            <th>注文個数</th>
+            <th>注文ステータス</th>
+          </tr>
+        </thead>
+      
+        <tbody>
+          <% @orders.each do |order| %>
+          <tr>
+            <td><%= link_to order.created_at.strftime("%Y/%m/%d %H:%M:%S"), admin_order_path(order.id) %></td>
+            <td><%= order.customer.last_name + order.customer.first_name %></td>
+            <td><%= order.order_details.sum(:quantity) %></td>
+            <td><%= order.order_status_i18n %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="offset-md-5 mt-5" style="text-align: center;"><%= paginate @orders %></div>
