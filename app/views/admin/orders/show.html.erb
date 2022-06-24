@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col-md-8">
         <%= form_with model: @order, url: admin_order_path(@order), method: :patch do |f| %>
           <p>注文ステータス<%= f.select :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]} %></p>
           <p><%= f.submit "更新", class: 'btn btn-success' %></p>
@@ -56,4 +56,23 @@
           </tbody>
         </table>
       </div>
+        <div class="col-md-2 col-md-offset-5 mt-auto">
+      <table>
+        <tbody>
+          <tr>
+            <th>商品合計</th>
+            <td><%= @order.total_payment %>円</td>
+          </tr>
+          <tr>
+            <th>送料</th>
+            <td><%= @order.shipping_cost %>円</td>
+          </tr>
+          <tr>
+            <th>請求金額合計</th>
+            <td><%= (@order.total_payment + @order.shipping_cost).to_s(:delimited, delimiter: ',') %>円</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
