@@ -1,4 +1,6 @@
 class Admin::ItemsController < ApplicationController
+   before_action :authenticate_admin!
+  
   def index
     @search = Item.ransack(params[:q])
     @items = @search.result.page(params[:page]).per(10)
