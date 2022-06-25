@@ -11,6 +11,7 @@ Rails.application.routes.draw do
      root 'homes#top'
      resources :items, only: [:show, :index] do
        resource :favorites, only: [:create, :destroy]
+       resources :item_comments, only: [:create, :destroy]
      end
      resources :genres, only: [:show]
      get 'favorite/items' => 'favorites#index', as: 'favorite_items'
