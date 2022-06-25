@@ -1,0 +1,4 @@
+<%= form_with model: cart_item, url: cart_item_path(cart_item.id), local: false do |f| %>
+    <%= f.number_field :quantity, min: 1, max: 100 %>
+    <%= f.submit "変更", class: 'btn btn-success ml-3 mr-5' %>
+<% end %>
