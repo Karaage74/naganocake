@@ -1,3 +1,4 @@
 $(".cart_item_class").html("<%= j(render 'form', cart_item: @cart_item) %>");
 $(".subtotal_class").html("<%= j(render 'subtotal', cart_item: @cart_item) %>");
 $(".total_payment_class").html("<%= j(render 'total_payment', total_payment: @total_payment) %>");
+$(".total_payment_class").toggleClass("box animated fadeInDown");
