@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
-  namespace :public do
-    get 'genres/show'
-  end
+
   # customer側ルーティング
   devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",
@@ -11,8 +9,11 @@ Rails.application.routes.draw do
 
   scope module: :public do
      root 'homes#top'
-     resources :items, only: [:show, :index]
+     resources :items, only: [:show, :index] do
+       resource :favorites, only: [:create, :destroy]
+     end
      resources :genres, only: [:show]
+     get 'favorite/items' => 'favorites#index', as: 'favorite_items'
      get 'about' => 'homes#about'
      patch 'customers/withdraw' => 'customers#withdraw', as: 'customers_withdraw'
      get 'custormers/unsubscribe' => 'customers#unsubscribe'

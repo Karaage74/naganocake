@@ -12,6 +12,7 @@
           <!--会員ログイン時-->
           <li><%= link_to "マイページ", customers_mypage_path, class: 'btn btn-outline-light' %></li>
           <li><%= link_to "商品一覧", items_path, class: 'btn btn-outline-light ml-3' %></li>
+          <li><%= link_to "いいね", favorite_items_path, class: 'btn btn-outline-light ml-3' %></li>
           <li><%= link_to "カート", cart_items_path, class: 'btn btn-outline-light ml-3'%></li>
           <li><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'btn btn-outline-light ml-3' %></li>
 

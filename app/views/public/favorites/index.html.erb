@@ -5,10 +5,10 @@
 		</div>
 		<div class="col-md-8 mt-5" style="margin-left: 50px;">
 			<h2>
-				商品一覧(全<%= @items_all.count %>件)
+			  お気に入り一覧(全<%= @customer.favorites.count %>件)
 			</h2>
 			<div class="card-deck">
-			  <% @items.each do |item| %>
+			  <% @favorite_items.each do |item| %>
 					<div class="col-md-4 mt-5 ">
 						<div class="card border border-secondary text-dark bg-light rounded">
 							<%= link_to item_path(item.id) ,style: "color: black;", data: {"turbolinks" => false}, class: "rounded" do %>
@@ -21,22 +21,22 @@
 									<div class="d-flex flex-row mt-3">
 										<% if customer_signed_in? %>
 											<div class="item_favorites_<%= item.id %> text-left">
-									    		<%= render 'public/favorites/favorite', item: item %>
-									    	</div>
-									    <% end %>
+								    		<%= render 'public/favorites/favorite', item: item %>
+								    	</div>
+								    <% end %>
 										<% if item.is_sale_status %>
-						                  <div class="card-text text-success font-weight-bold mb-0" style="text-align: right; width: 100%;">販売中</div>
-						                <% else %>
-						                  <div class="card-text text-danger font-weight-bold mb-0" style="text-align: right; width: 100%;">販売停止中</div>
-						                <% end %>
-					                </div>
+		                  <div class="card-text text-success font-weight-bold mb-0" style="text-align: right; width: 100%;">販売中</div>
+		                <% else %>
+		                  <div class="card-text text-danger font-weight-bold mb-0" style="text-align: right; width: 100%;">販売停止中</div>
+		                <% end %>
+	                </div>
 								</div>
 							<% end %>
 						</div>
 					</div>
 			  <% end %>
 			</div>
-		  	<div class="offset-md-5 mt-5" style="text-align: center;"><%= paginate @items %></div>
+		  	<div class="offset-md-5 mt-5" style="text-align: center;"><%= paginate @favorite_items %></div>
 		</div>
 	</div>
 </div>

@@ -35,11 +35,18 @@
                   <div class="card-title"><%= item.name %></div>
                   <div class="card-text">¥<%= item.price_without_tax.to_s(:delimited, delimiter: ',') %></div>
                 </div>
-                <% if item.is_sale_status %>
-                  <p class="card-text text-success font-weight-bold mb-2 mr-2" style="text-align: right;">販売中</p>
-                <% else %>
-                  <p class="card-text text-danger font-weight-bold mb-2 mr-2" style="text-align: right;">販売停止中</p>
-                <% end %>
+                <div class="d-flex flex-row mt-3">
+									<% if customer_signed_in? %>
+										<div class="item_favorites_<%= item.id %> text-left ml-3 mb-3">
+							    		<%= render 'public/favorites/favorite', item: item %>
+							    	</div>
+							    <% end %>
+									<% if item.is_sale_status %>
+	                  <div class="card-text text-success font-weight-bold mb-0 pr-2" style="text-align: right; width: 100%;">販売中</div>
+	                <% else %>
+	                  <div class="card-text text-danger font-weight-bold mb-0 pr-2" style="text-align: right; width: 100%;">販売停止中</div>
+	                <% end %>
+                </div>
               <% end %>
             </div>
           </div>

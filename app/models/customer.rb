@@ -7,6 +7,8 @@ class Customer < ApplicationRecord
   has_many :cart_items
   has_many :shipping_addresses
   has_many :orders
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_items, through: :favorites, source: :item
 
 
   def full_name
@@ -19,5 +21,9 @@ class Customer < ApplicationRecord
 
   def active_for_authentication?
     super && (self.is_deleted == false)
+  end
+
+  def favorited_by?(item_id)
+    favorites.where(item_id: item.id).exists?
   end
 end
