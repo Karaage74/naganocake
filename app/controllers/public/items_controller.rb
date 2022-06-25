@@ -12,4 +12,6 @@ class Public::ItemsController < ApplicationController
     @genres = Genre.all
     @item_comment = ItemComment.new
   end
+  
+  
 end

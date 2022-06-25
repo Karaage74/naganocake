@@ -12,10 +12,18 @@ class Public::ItemCommentsController < ApplicationController
     ItemComment.find(params[:id]).destroy
     redirect_to item_path(params[:item_id])
   end
+  
+  def comment_average
+    if @item.item_comment.blank?
+      @average_star = 0
+    else
+      @average_star = @item.item_comment.average(:star).round(2)
+    end
+  end
 
   private
 
   def item_comment_params
-    params.require(:item_comment).permit(:comment, :name)
+    params.require(:item_comment).permit(:comment, :name, :star)
   end
 end
