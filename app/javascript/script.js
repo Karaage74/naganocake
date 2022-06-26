@@ -5,6 +5,7 @@
       autoplaySpeed: 3000,
       arrows: true,
       dots: true,
+      speed: 1000,
     });
   });
 });

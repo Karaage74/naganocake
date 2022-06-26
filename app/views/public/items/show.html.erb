@@ -16,11 +16,11 @@
     							<div class="item_favorites_<%= @item.id %> text-right mr-2 mt-1">
     				    		<% if @item.favorited_by?(current_customer) %>
                       <%= link_to item_favorites_path(@item), method: :delete, remote: true do %>
-                        <i class="fas fa-heart favorite1"></i>
+                        <i class="fas fa-heart faa-tada animated-hover favorite1"></i>
                       <% end %>
                     <% else %>
                       <%= link_to item_favorites_path(@item), method: :post, remote: true do %>
-                        <i class="fas fa-heart favorite2"></i>
+                        <i class="fas fa-heart faa-bounce animated-hover favorite2"></i>
                       <% end %>
                     <% end %>
     				    	</div>
@@ -71,50 +71,57 @@
           <%= f.submit "送信する", class: "btn btn-success mt-3 mb-3", style: "width: 65%;" %>
         <% end %>
       </div>
-      <div class="col-md-7 offset-1 bg-light border border-secondary rounded mt-3">
-        <h3 class="text-center mt-3">レビュー件数：<%= @item.item_comments.count %></h3>
-        <% @item.item_comments.each do |item_comment| %>
-          <div class="card  border border-secondary mt-4 mb-3">
-            <div class="card-body px-0 pt-0 pb-0">
-              <div class="card-text card-text1 pt-2 pb-2 pl-2 d-flex flex-row">
-                <div style="width: 55%;">ニックネーム: <%= item_comment.name %>さん</div>
-                <div>
-                  <div id="star-rate<%= item_comment.id%>">評価 :<%= item_comment.star %>点</div>
+      <% if @item.item_comments.count == 0 %>
+        <div class="col-md-7 offset-1 bg-light border border-secondary rounded mt-3">
+          <h3 class="text-center mt-3">レビュー件数：<%= @item.item_comments.count %></h3>
+          <h5 class="text-center" style="margin-top: 120px;">レビューはまだありません😢</h5>
+        </div>
+      <% else %>
+        <div class="col-md-7 offset-1 bg-light border border-secondary rounded mt-3">
+          <h3 class="text-center mt-3">レビュー件数：<%= @item.item_comments.count %></h3>
+          <% @item.item_comments.each do |item_comment| %>
+            <div class="card  border border-secondary mt-4 mb-3">
+              <div class="card-body px-0 pt-0 pb-0">
+                <div class="card-text card-text1 pt-2 pb-2 pl-2 d-flex flex-row">
+                  <div style="width: 55%;">ニックネーム: <%= item_comment.name %>さん</div>
+                  <div>
+                    <div id="star-rate<%= item_comment.id%>">評価 :<%= item_comment.star %>点</div>
+                  </div>
                 </div>
-              </div>
-                <script>
-                  $(document).on('turbolinks:load', function() {
-                    $('#star-rate<%= item_comment.id%>').raty({
-                      size : 16,
-                      starOff: '<%= asset_path('star-off.png') %>',
-                      starOn : '<%= asset_path('star-on.png') %>',
-                      starHalf: '<%= asset_path('star-half.png') %>',
-                      half: true,
-                      readOnly: true,
-                      score: <%= item_comment.star %>
-                    });
-                  })
-                </script>
-              <div class="card-text pt-2 pl-2 pb-2">
-                レビュー内容:
-              </div>
-              <div class="card-text card-text1 pl-3 pr-3 pb-3">
-                <%= item_comment.comment %>
-              </div>
-              <div class="card-text d-flex flex-row">
-                <div class="ml-2 pt-3">投稿日: <%= item_comment.created_at.strftime('%Y/%m/%d') %></div>
-                <div class="text-right pt-2 pb-2" style="width: 70%;">
-                  <% if item_comment.customer == current_customer %>
-                    <%= link_to item_item_comment_path(item_comment.item, item_comment), method: :delete, class: "btn btn-danger" do %>
-                      <i class="fas fa-trash"></i>
+                  <script>
+                    $(document).on('turbolinks:load', function() {
+                      $('#star-rate<%= item_comment.id%>').raty({
+                        size : 16,
+                        starOff: '<%= asset_path('star-off.png') %>',
+                        starOn : '<%= asset_path('star-on.png') %>',
+                        starHalf: '<%= asset_path('star-half.png') %>',
+                        half: true,
+                        readOnly: true,
+                        score: <%= item_comment.star %>
+                      });
+                    })
+                  </script>
+                <div class="card-text pt-2 pl-2 pb-2">
+                  レビュー内容:
+                </div>
+                <div class="card-text card-text1 pl-3 pr-3 pb-3">
+                  <%= item_comment.comment %>
+                </div>
+                <div class="card-text d-flex flex-row">
+                  <div class="ml-2 pt-3">投稿日: <%= item_comment.created_at.strftime('%Y/%m/%d') %></div>
+                  <div class="text-right pt-2 pb-2" style="width: 70%;">
+                    <% if item_comment.customer == current_customer %>
+                      <%= link_to item_item_comment_path(item_comment.item, item_comment), method: :delete, class: "btn btn-danger" do %>
+                        <i class="fas fa-trash"></i>
+                      <% end %>
                     <% end %>
-                  <% end %>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        <% end %>
-      </div>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
