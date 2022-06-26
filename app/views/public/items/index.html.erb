@@ -10,7 +10,7 @@
 			<div class="card-deck">
 			  <% @items.each do |item| %>
 					<div class="col-md-4 mt-5 ">
-						<div class="card border border-secondary text-dark bg-light rounded">
+						<div class="card border border-secondary text-dark bg-light rounded faa-bounce animated-hover">
 							<%= link_to item_path(item.id) ,style: "color: black;", data: {"turbolinks" => false}, class: "rounded" do %>
 								<%= image_tag item.get_item_image(285, 290), class: "mb-2" %>
 								<div class="card-body">
@@ -20,16 +20,16 @@
 									</p>
 									<div class="d-flex flex-row mt-3">
 										<% if customer_signed_in? %>
-											<div class="item_favorites_<%= item.id %> text-left">
+											<div class="item_favorites_<%= item.id %> faa-tada animated-hover text-left">
 									    		<%= render 'public/favorites/favorite', item: item %>
 									    	</div>
 									    <% end %>
 										<% if item.is_sale_status %>
-						                  <div class="card-text text-success font-weight-bold mb-0" style="text-align: right; width: 100%;">販売中</div>
-						                <% else %>
-						                  <div class="card-text text-danger font-weight-bold mb-0" style="text-align: right; width: 100%;">販売停止中</div>
-						                <% end %>
-					                </div>
+			                  <div class="card-text text-success font-weight-bold mb-0" style="text-align: right; width: 100%;">販売中</div>
+			                <% else %>
+			                  <div class="card-text text-danger font-weight-bold mb-0" style="text-align: right; width: 100%;">販売停止中</div>
+			                <% end %>
+		                </div>
 								</div>
 							<% end %>
 						</div>
