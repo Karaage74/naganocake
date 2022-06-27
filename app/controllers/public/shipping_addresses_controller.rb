@@ -2,7 +2,6 @@ class Public::ShippingAddressesController < ApplicationController
   before_action :authenticate_customer!
   
   def index
-    #@shipping_addresses = ShippingAddress.all
     @shipping_addresses = current_customer.shipping_addresses
     @shipping_address = ShippingAddress.new
   end
@@ -10,9 +9,7 @@ class Public::ShippingAddressesController < ApplicationController
   def create
     @shipping_address = ShippingAddress.new(shipping_address_params)
     @shipping_address.customer_id = current_customer.id
-    #@shipping_address = current_customer.shipping_addresses
     @shipping_address.save
-    binding.pry
     flash[:notice] = "新規配送先を登録しました"
     redirect_to shipping_addresses_path
   end
